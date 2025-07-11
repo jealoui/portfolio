@@ -1,9 +1,4 @@
-/*
-* Template Name: Space
-* Template Author: Untree.co
-* Author URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/
+
 body {
   font-family: "PT Mono", monospace;
   line-height: 1.6;
@@ -947,14 +942,14 @@ figure.dotted-bg {
     transform: rotate(360deg); } }
 
 .portfolio-single-inner .heading-portfolio-single-h2 {
-  margin-bottom: 40px;
-  font-weight: 900; }
+  margin-bottom: 10px;
+  font-weight: 800; }
   @media (max-width: 991.98px) {
     .portfolio-single-inner .heading-portfolio-single-h2 {
-      font-size: 30px; } }
+      font-size: 10px; } }
 
 #portfolio-single-holder .portfolio-single-inner {
-  position: relative;
+  position: center;
   opacity: 0;
   display: none; }
 
@@ -1151,7 +1146,7 @@ figure.dotted-bg {
 #about-section {
   margin-top: 7rem; }
   #about-section .container {
-    background: #0389ff;
+    background: #a4c5d1;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 50px;
