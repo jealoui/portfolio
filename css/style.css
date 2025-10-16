@@ -35,7 +35,7 @@ body {
   background-color: rgba(0, 0, 0, 0.05); }
 
 a {
-  color: #0389ff;
+  color: #36627F;
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease; }
@@ -798,7 +798,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     width: 90px;
     height: 20px; }
   .wave path {
-    stroke: #0389ff;
+    stroke: #36627F;
     stroke-width: 2px;
     stroke-linecap: round;
     fill: none; }
@@ -923,7 +923,7 @@ figure.dotted-bg {
   margin: 2rem auto;
   border-radius: 50%;
   border: 0.3rem solid rgba(255, 255, 255, 0.3);
-  border-top-color: #ffffff;
+  border-top-color: #0389ff;
   -webkit-animation: 1.5s spin infinite linear;
   animation: 1.5s spin infinite linear; }
   .loader-portfolio.dark, .site-loader.dark {
