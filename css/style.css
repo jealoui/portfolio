@@ -1664,12 +1664,20 @@ figure.dotted-bg {
         background: #36a1ff;
         color: #ffffff; }
 
-/* Darker overlay behind popup */
+/* Strong Fancybox overlay override — place at BOTTOM of css/style.css */
+html body .fancybox-bg,
+.fancybox-container .fancybox-bg,
 .fancybox-bg {
-  background-color: rgba(0, 0, 0, 0.7) !important;
-  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.70) !important;
+  background: rgba(0, 0, 0, 0.70) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  pointer-events: auto !important;
+  transition: opacity .25s ease !important;
 }
 
-.fancybox-is-open .fancybox-bg {
+/* Force full opacity when open (in case JS sets opacity) */
+.fancybox-is-open .fancybox-bg,
+.fancybox-show .fancybox-bg {
   opacity: 1 !important;
 }
