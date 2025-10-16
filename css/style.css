@@ -1663,11 +1663,3 @@ figure.dotted-bg {
       .site-footer .social li a:hover {
         background: #36a1ff;
         color: #ffffff; }
-
-/* --- FIX: Dark transparent overlay for Fancybox popups --- */
-.fancybox-bg {
-  background-color: rgba(0, 0, 0, 0.7) !important; /* dark translucent */
-  opacity: 1 !important; /* ensure it’s visible */
-  backdrop-filter: blur(3px) !important; /* subtle blur behind popup */
-  -webkit-backdrop-filter: blur(3px) !important;
-}
