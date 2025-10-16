@@ -1,9 +1,3 @@
-/*
-* Template Name: Space
-* Template Author: Untree.co
-* Author URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/
 body {
   font-family: "PT Mono", monospace;
   line-height: 1.6;
@@ -1151,7 +1145,7 @@ figure.dotted-bg {
 #about-section {
   margin-top: 7rem; }
   #about-section .container {
-    background: #0389ff;
+    background: #bf19d8;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 50px;
@@ -1669,3 +1663,9 @@ figure.dotted-bg {
       .site-footer .social li a:hover {
         background: #36a1ff;
         color: #ffffff; }
+
+/* Darker overlay behind popup */
+.fancybox-bg {
+  background-color: rgba(0, 0, 0, 0.7) !important; /* darkens background */
+  backdrop-filter: blur(2px); /* optional, adds subtle blur */
+}
