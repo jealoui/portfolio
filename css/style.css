@@ -1666,6 +1666,10 @@ figure.dotted-bg {
 
 /* Darker overlay behind popup */
 .fancybox-bg {
-  background-color: rgba(0, 0, 0, 0.7) !important; /* darkens background */
-  backdrop-filter: blur(2px); /* optional, adds subtle blur */
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(2px);
+}
+
+.fancybox-is-open .fancybox-bg {
+  opacity: 1 !important;
 }
