@@ -616,17 +616,68 @@ var owlSingleSlider = function () {
     });
   }
 
-  // MutationObserver in case Fancybox adds the element later or uses inline styling
-  var obs = new MutationObserver(function() {
-    styleFancyboxBg();
-  });
-  obs.observe(document.documentElement || document.body, { childList: true, subtree: true });
+// Force an overlay when Fancybox opens — robust against inline style overrides
+(function() {
+  function ensureOverlayExists() {
+    if (!document.querySelector('.jd-overlay')) {
+      var ov = document.createElement('div');
+      ov.className = 'jd-overlay';
+      ov.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ov);
+    }
+  }
+  function showOverlay() {
+    // If html has fancybox-is-open, CSS pseudo-element covers it — but create fallback too
+    if (document.documentElement.classList.contains('fancybox-is-open')) {
+      // ensure fallback exists but hide it (CSS pseudo-element will take priority)
+      ensureOverlayExists();
+      document.querySelector('.jd-overlay').style.display = 'block';
+    } else {
+      // if fancybox not using that class, still create overlay
+      ensureOverlayExists();
+      document.querySelector('.jd-overlay').style.display = 'block';
+    }
+  }
+  function hideOverlay() {
+    var ov = document.querySelector('.jd-overlay');
+    if (ov) ov.style.display = 'none';
+  }
 
-  // Also run once after load
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(styleFancyboxBg, 200);
+  // Hook into Fancybox events (common event names)
+  if (window.jQuery) {
+    jQuery(document).on('afterShow.fb onComplete.fb beforeShow.fb', function() {
+      setTimeout(showOverlay, 10);
+    });
+    jQuery(document).on('afterClose.fb onClosed.fb', function() {
+      setTimeout(hideOverlay, 10);
+    });
+  }
+
+  // MutationObserver fallback — watch for .fancybox-container insertion
+  var mo = new MutationObserver(function(muts) {
+    muts.forEach(function(m) {
+      m.addedNodes && m.addedNodes.forEach(function(n) {
+        if (n.nodeType === 1) {
+          if (n.classList && (n.classList.contains('fancybox-container') || n.classList.contains('fancybox'))) {
+            showOverlay();
+          }
+        }
+      });
+      m.removedNodes && m.removedNodes.forEach(function(n) {
+        if (n.nodeType === 1) {
+          if (n.classList && (n.classList.contains('fancybox-container') || n.classList.contains('fancybox'))) {
+            hideOverlay();
+          }
+        }
+      });
+    });
   });
-})();
+  mo.observe(document.body, { childList: true, subtree: true });
+
+  // Safety hide on load
+  document.addEventListener('DOMContentLoaded', function() {
+    hideOverlay();
+  });
 
 
 
