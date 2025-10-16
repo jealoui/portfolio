@@ -597,6 +597,36 @@ var owlSingleSlider = function () {
 
 
 })
+// Ensure overlay styling even if Fancybox sets inline styles
+(function() {
+  function styleFancyboxBg() {
+    var bg = document.querySelector('.fancybox-bg');
+    if (!bg) return;
+    bg.style.setProperty('background', 'rgba(0,0,0,0.70)', 'important');
+    bg.style.setProperty('background-color', 'rgba(0,0,0,0.70)', 'important');
+    bg.style.setProperty('backdrop-filter', 'blur(2px)', 'important');
+    bg.style.setProperty('-webkit-backdrop-filter', 'blur(2px)', 'important');
+    bg.style.setProperty('opacity', '1', 'important');
+  }
+
+  // If Fancybox fires jQuery events (common), listen and apply
+  if (window.jQuery) {
+    jQuery(document).on('afterShow.fb beforeShow.fb', function() {
+      styleFancyboxBg();
+    });
+  }
+
+  // MutationObserver in case Fancybox adds the element later or uses inline styling
+  var obs = new MutationObserver(function() {
+    styleFancyboxBg();
+  });
+  obs.observe(document.documentElement || document.body, { childList: true, subtree: true });
+
+  // Also run once after load
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(styleFancyboxBg, 200);
+  });
+})();
 
 
 
