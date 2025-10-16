@@ -476,6 +476,12 @@ var portfolioItemClick = function() {
 			$('#portfolio-single-holder > div').remove();
 		} 
 
+		// Create darker overlay when popup opens
+		if (!$('#portfolio-overlay').length) {
+			$('body').append('<div id="portfolio-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 998; display: none;"></div>');
+		}
+		$('#portfolio-overlay').fadeIn(400);
+
 		TweenMax.to('.loader-portfolio-wrap', 1, { top: '-50px', autoAlpha: 1, display: 'block', ease: Power4.easeOut });
 
 		setTimeout(function() {
@@ -496,7 +502,10 @@ var portfolioItemClick = function() {
 	});
 
 	// Close
-	$('body').on('click', '.js-close-portfolio', function() {
+	$('body').on('click', '.js-close-portfolio, #portfolio-overlay', function() {
+
+		// Fade out the overlay
+		$('#portfolio-overlay').fadeOut(400);
 
 		setTimeout(function(){
 			$('html, body').animate({
@@ -535,7 +544,7 @@ var loadPortfolioSinglePage = function(id, href) {
 
 			pSingleHolder.append(
 				'<div id="portfolio-single-'+id+
-				'" class="portfolio-single-inner"><span class="unslate_co--close-portfolio js-close-portfolio d-flex align-items-center"><span class="icon-close2 wrap-icon-close"></span></span>' + getHTMLContent + '</div>'
+				'" class="portfolio-single-inner" style="position: relative; z-index: 999;"><span class="unslate_co--close-portfolio js-close-portfolio d-flex align-items-center"><span class="icon-close2 wrap-icon-close"></span></span>' + getHTMLContent + '</div>'
 				);
 
 			setTimeout(function() {
@@ -597,8 +606,3 @@ var owlSingleSlider = function () {
 
 
 })
-
-
-
-
-
